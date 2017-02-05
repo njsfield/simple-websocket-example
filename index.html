@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Simple Websocket Example</title>
+  </head>
+  <body>
+
+    <style>
+      input {
+        font-size: 22px;
+        margin: 20px;
+        min-width: 500px;
+        font-weight: 300;
+      }
+
+      label {
+        display: inline-block;
+        width: 40px;
+      }
+
+    </style>
+
+    <!-- Send to server via websocket -->
+    <label for="clientinput">You</label>
+      <input class="clientinput" placeholder="please type some stuff to send via websocket... "/>
+
+    <br />
+    <!-- Receive from server via websocket -->
+    <label for="serveroutput">Server</label>
+      <input style="color: lightblue;"  class="serveroutput" placeholder="... your server will type it back via websocket" disabled/>
+
+
+    <script type="text/javascript">
+
+    (function connect(){
+      try {
+        
+        var host = "ws://localhost:8000";
+        var socket = new WebSocket(host);
+        var input = document.querySelector('.clientinput');
+        var output = document.querySelector('.serveroutput');
+
+        socket.onopen = function(){
+           console.log('Socket Status: '+socket.readyState);
+        }
+
+        socket.onmessage = function(msg){
+           output.value = msg.data;
+        }
+
+        socket.onclose = function(){
+           console.log('Socket Closed: '+socket.readyState);
+        }
+
+        input.addEventListener('input', function(e){
+          socket.send(e.target.value);
+        })
+
+      } catch(exception){
+         console.log('Error!: '+exception);
+      }
+    })();
+
+    </script>
+  </body>
+</html>
