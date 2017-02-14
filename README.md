@@ -13,9 +13,8 @@ Demonstrates a simple use case for the [Node based ws library](https://github.co
 7. An **Event Listener** is attached to the first input element, which sends a message through the socket on input.
 8. Server receives message via socket.
 9. Server logs the message.
-10. Server sends back message.
+10. Server sends back message (*to all connected clients*)
 11. Clients *onmessage* event handler is called, and message is injected into second input element.
-
 
 ### Install
 
@@ -31,3 +30,8 @@ Start
 ```
 npm start
 ```
+Navigate to http://localhost:4000/
+
+### Bonus
+
+Navigate to http://localhost:4000/ in *several* browser windows, then type a message into each to see how all windows will be updated.
