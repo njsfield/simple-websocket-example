@@ -6,8 +6,8 @@ const log = (msg) => process.stdout.write(`${msg}\n`);
 
 const header = { 'content-type': 'text/html' };
 
-// Server
-http.createServer((req, res) => {
+// Export Server
+module.exports = http.createServer((req, res) => {
   if (req.url === '/') {
     const html = fs.readFileSync(path.join(__dirname, 'index.html'));
     res.writeHead(200, header);
@@ -17,5 +17,5 @@ http.createServer((req, res) => {
   log(`Server live at http://localhost:${port}/`);
 });
 
-// websocket.js
+// // websocket.js
 require('./websocket');
