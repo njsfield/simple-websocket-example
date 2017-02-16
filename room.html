@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Room</title>
+    <link href="style/css" type="text/css" />
+  </head>
+  <body>
+
+    <div class="serveroutput">
+      <!-- Output -->
+    </div>
+
+
+    <br />
+    <!-- Send to server via websocket -->
+    <input class="clientinput" placeholder="please type some stuff to send via websocket... "/>
+
+    <button class="submit">Submit</button>
+
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script type="text/javascript">
+
+      var socket = io();
+      var input = document.querySelector('.clientinput');
+      var output = document.querySelector('.serveroutput');
+      var submit = document.querySelector('.submit');
+
+      socket.emit('')
+
+      socket.on('global message', function (msg){
+        var elt = document.createElement('p');
+            elt.innerHTML = msg;
+         output.appendChild(elt)
+      })
+
+
+      submit.addEventListener('click', function(){
+        socket.emit('private message', input.value);
+        input.value = "";
+      })
+
+    </script>
+  </body>
+</html>
