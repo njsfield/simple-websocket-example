@@ -1,0 +1,56 @@
+/* Generic */
+input, p, h1, h2, h3, h4 {
+  font-family: 'Roboto', sans-serif;
+}
+
+input, button {
+    font-size: 22px;
+    margin-top: 20px;
+    font-weight: 300;
+    padding: 10px;
+}
+
+input {
+    min-width: 500px;
+}
+
+button:focus, input:focus {
+    outline: none;
+}
+
+label {
+    display: inline-block;
+    width: 40px;
+}
+
+button {
+    border: 1px solid lightblue;
+    background: lightblue;
+    color: white;
+    cursor: pointer;
+    transition: opacity .3s ease;
+}
+
+button:hover {
+    opacity: 0.5;
+}
+
+p {
+    line-height: 5px;
+}
+
+/* Class */
+.serveroutput {
+    border: 1px solid lightgrey;
+    height: 400px;
+    width: 596px;
+    padding: 10px;
+}
+
+.orange {
+  color: #BF360C;
+}
+
+.green {
+  color: #81C784;
+}
