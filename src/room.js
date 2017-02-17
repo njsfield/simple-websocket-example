@@ -7,7 +7,7 @@ function Room (roomname) {
 Room.prototype.addEndpoint = function (endpointId) {
   this.endpoints[endpointId] = {
     name: '',
-    permissions: [],
+    permissions: 'chat',
     commsid: ''
   };
 };
@@ -23,7 +23,7 @@ Room.prototype.updateEndpointPermissions = function (endpointId, permissions) {
 };
 
 // Update Endpoint comms ID
-Room.prototype.updateEndpointCommsId = function (endpointId, commsid) {
+Room.prototype.updateEndpointCommsID = function (endpointId, commsid) {
   this.endpoints[endpointId].commsid = commsid;
 };
 

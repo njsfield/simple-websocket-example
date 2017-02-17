@@ -9,10 +9,11 @@
   </head>
   <body>
 
-    <h1>Room Name   : {{roomname}}</h1>
-    <h1>Endpoint Id : {{endpointid}}</h1>
+    <h2>Endpoint: {{endpointid}}</h2>
+    <h3>Room:     {{roomname}}</h3>
     <div class="serveroutput">
-      <!-- Output -->
+    <!-- Output -->
+    <!-- {{endpointid}}, {{roomname}} -->
     </div>
 
     <br />
@@ -23,36 +24,21 @@
 
 
     <script src="/socket.io/socket.io.js"></script>
-    <!-- <script src="comms.js" type="text/javascript"></script>
-    <script src="chatroom.js"   type="text/javascript"></script> -->
+    <script src="js/elt.js" type="text/javascript"></script>
+    <script src="js/clientcomms.js" type="text/javascript"></script>
+    <script src="js/clientregister.js" type="text/javascript"></script>
+    <script src="js/chatmessage.js" type="text/javascript"></script>
     <script type="text/javascript">
 
       // Globals
-      var input = document.querySelector('.clientinput');
-      var output = document.querySelector('.serveroutput');
-      var submit = document.querySelector('.submit');
+      const input = document.querySelector('.clientinput');
+      const output = document.querySelector('.serveroutput');
+      const submit = document.querySelector('.submit');
 
-
-      // var myComms = new Comms(endpointId, roomId);
-      // myComms.registerHandler('CHAT', 'REGISTER', registerMySelf)
-      //
-      //
-      // function registerMySelf(handler, from, message) {
-      //
-      //
-      // }
-
-      var socket = io();
-      socket.on('global message', function (msg){
-        var elt = document.createElement('p');
-            elt.innerHTML = msg;
-         output.appendChild(elt)
-      })
-
-      submit.addEventListener('click', function(){
-        socket.emit('private message', input.value);
-        input.value = "";
-      })
+      const myComms = new Comms('{{roomname}}', '{{endpointid}}');
+        clientRegister(myComms, output, ()=> {
+          chatMessage(myComms, input, output, submit)
+        })
 
     </script>
   </body>
