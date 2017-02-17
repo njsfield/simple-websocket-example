@@ -1,3 +1,4 @@
+// Global room class
 function Room (roomname) {
   this.roomname = roomname;
   this.endpoints = {};

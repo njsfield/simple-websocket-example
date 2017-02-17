@@ -1,7 +1,7 @@
-// Global endpoint
+// Global endpoints
 Comms.endpoints = {};
 
-// comms.js
+// Main comms class
 function Comms (roomId, endpointId) {
   var self = this;
   this.endpointid = endpointId;
@@ -18,18 +18,18 @@ function Comms (roomId, endpointId) {
   Comms.endpoints[this.endpointid] = this;
 }
 
-// Get endpointId
+// Get endpoint Id (useful when client has multiple endpoints)
 Comms.getEndPointID = function (endpointId) { // Get endpoints
   return Comms.endpoints[endpointId];
 };
 
-// This function is called by wecrtc.js, av.js and chat.js when registering
+// To allow handler functions to be called when messages received
 Comms.prototype.registerHandler = function (app, method, cb) {
   var fullName = app + '.' + method;
   this.handlers[fullName] = cb;
 };
 
-// This function is called by wecrtc.js, av.js and chat.js when registering
+// Add external endpoint method
 Comms.prototype.addExternalEndpoint = function (endpoint) {
   this.externalendpoints.add(endpoint);
 };

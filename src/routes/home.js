@@ -1,21 +1,24 @@
+// Access global room object for this example
+const myRoom = require('../../myroom.js');
+
 const fs = require('fs');
 const path = require('path');
 const log = (msg) => process.stdout.write(`${msg}\n`);
-const myRoom = require('../../myroom.js');
-const randomString = require('../helpers/randomstring');
+
+const makeRandomString = require('../helpers/randomstring');
 
 // Home request
 module.exports = (request, response) => {
   fs.readFile(path.join(__dirname, '../../views/index.html'), (err, data) => {
     if (err) log('Error Serving Home:' + err);
     else {
-      // get roomname, make endpointId
+      // get roomname + make new random endpointId
       const roomName = myRoom.getRoomName();
-      const endpointId = randomString();
+      const endpointId = makeRandomString();
       // Add endpoint
       myRoom.addEndpoint(endpointId);
 
-      // Inject data
+      // Inject roomName + endpointId
       data = data.toString();
       data = data.replace(/{{roomname}}/g, roomName);
       data = data.replace(/{{endpointid}}/g, endpointId);

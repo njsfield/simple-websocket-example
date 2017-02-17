@@ -10,15 +10,8 @@ const liveserver = server.listen(port, () => {
 
 // Start Websocket server from liveserver
 const io = require('socket.io')(liveserver);
-
 io.on('connection', (ws) => {
   ws.on('message', (msg) => {
     comms(io, ws, msg);
   });
 });
-
-// // Replace with comms
-// log('A new socket has been connected');
-// ws.on('private message', (message) => {
-//   io.emit('global message', message);
-// });

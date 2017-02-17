@@ -1,5 +1,5 @@
 // Simply sends message to register
-function clientRegister (comms, output, cb) {
+const clientRegister = (comms, output, cb) => {
   const app = 'CLIENT';
   const method = 'REGISTER';
   const to = 'SYSTEM';
@@ -11,4 +11,4 @@ function clientRegister (comms, output, cb) {
     cb();
   });
   comms.send(app, method, to, 'Let me join this room');
-}
+};

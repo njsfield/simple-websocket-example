@@ -5,24 +5,21 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Simple Websocket Example</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet"/>
   </head>
   <body>
 
-    <h2>Endpoint: {{endpointid}}</h2>
-    <h3>Room:     {{roomname}}</h3>
-    <div class="serveroutput">
-    <!-- Output -->
-    <!-- {{endpointid}}, {{roomname}} -->
-    </div>
+    <h2 class="orange">Endpoint: {{endpointid}}</h2>
+    <h3 class="purple">Room:     {{roomname}}</h3>
+    <div class="serveroutput"></div>
 
     <br />
-    <!-- Send to server via websocket -->
     <input class="clientinput" placeholder="please type some stuff to send via websocket... "/>
-    <!-- Submit Button -->
     <button class="submit">Submit</button>
 
 
+    <!-- socket.io innit -->
     <script src="/socket.io/socket.io.js"></script>
     <script src="js/elt.js" type="text/javascript"></script>
     <script src="js/clientcomms.js" type="text/javascript"></script>
@@ -35,8 +32,11 @@
       const output = document.querySelector('.serveroutput');
       const submit = document.querySelector('.submit');
 
+      // Set up comms
       const myComms = new Comms('{{roomname}}', '{{endpointid}}');
+        // Register socket with server
         clientRegister(myComms, output, ()=> {
+          // Enable chat message module
           chatMessage(myComms, input, output, submit)
         })
 

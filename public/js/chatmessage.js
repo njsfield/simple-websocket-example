@@ -11,6 +11,7 @@ function chatMessage (comms, input, output, submit) {
   submit.addEventListener('click', () => {
     if (input.value) {
       comms.send(app, method, to, input.value);
+      // Reset Input
       input.value = '';
     }
   });
