@@ -5,77 +5,42 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Simple Websocket Example</title>
+    <link href="style.css" rel="stylesheet"/>
   </head>
   <body>
-
-    <style>
-      input,button {
-        font-size: 22px;
-        margin-top: 20px;
-        font-weight: 300;
-        padding: 10px;
-      }
-
-      input {
-        min-width: 500px;
-      }
-
-      button:focus, input:focus{
-        outline: none;
-      }
-
-      label {
-        display: inline-block;
-        width: 40px;
-      }
-
-      .serveroutput {
-        border: 1px solid lightgrey;
-        height: 400px;
-        width: 596px;
-        padding: 10px;
-      }
-
-      button {
-        border: 1px solid lightblue;
-        background: lightblue;
-        color: white;
-        cursor: pointer;
-        transition: opacity .3s ease;
-      }
-
-      button:hover {
-        opacity: 0.5;
-      }
-
-      p {
-        line-height: 5px;
-      }
-
-    </style>
-
 
     <div class="serveroutput">
       <!-- Output -->
     </div>
 
-
     <br />
     <!-- Send to server via websocket -->
     <input class="clientinput" placeholder="please type some stuff to send via websocket... "/>
-
+    <!-- Submit Button -->
     <button class="submit">Submit</button>
 
 
-
     <script src="/socket.io/socket.io.js"></script>
+    <script src="comms.js" type="text/javascript"></script>
+    <script src="chatroom.js"   type="text/javascript"></script>
     <script type="text/javascript">
 
-      var socket = io();
+      // Globals
       var input = document.querySelector('.clientinput');
       var output = document.querySelector('.serveroutput');
       var submit = document.querySelector('.submit');
 
+      var endpointId = {{endpointId}};
+      var roomId     = {{roomId}};
+
+      var myComms = new Comms(endpointId, roomId);
+      myComms.registerHandler('CHAT', 'REGISTER', registerMySelf)
+
+
+      function registerMySelf(handler, from, message) {
+
+
+      }
 
       socket.on('global message', function (msg){
         var elt = document.createElement('p');
