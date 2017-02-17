@@ -1,6 +1,7 @@
 const server = require('./src/server.js');
 const port = 4000;
 const log = (msg) => process.stdout.write(`${msg}\n`);
+// const Comms = require('./src/comms.js');
 
 // Start REST server
 const liveserver = server.listen(port, () => {
@@ -19,3 +20,9 @@ io.on('connection', (ws) => {
 });
 
 module.exports = io;
+
+// // Replace with comms
+// log('A new socket has been connected');
+// ws.on('private message', (message) => {
+//   io.emit('global message', message);
+// });
