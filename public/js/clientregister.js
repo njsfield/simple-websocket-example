@@ -4,7 +4,8 @@ const clientRegister = (comms, output, cb) => {
   const method = 'REGISTER';
   const to = 'SYSTEM';
   comms.registerHandler(app, method, (comms, from, message) => {
-    output.appendChild(elt('p', message));
+    output.appendChild(elt('b', from + ' joined the chat room'));
+    output.appendChild(elt('br'));
     if (comms.endpointid !== from) {
       comms.addExternalEndpoint(from);
     }
