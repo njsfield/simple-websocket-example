@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Room</title>
-    <link href="style/css" type="text/css" />
+    <title>Simple Websocket Example</title>
+    <link href="css/style.css" rel="stylesheet"/>
   </head>
   <body>
 
@@ -13,30 +13,41 @@
       <!-- Output -->
     </div>
 
-
     <br />
     <!-- Send to server via websocket -->
     <input class="clientinput" placeholder="please type some stuff to send via websocket... "/>
-
+    <!-- Submit Button -->
     <button class="submit">Submit</button>
 
-    <script src="/socket.io/socket.io.js"></script>
 
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- <script src="comms.js" type="text/javascript"></script>
+    <script src="chatroom.js"   type="text/javascript"></script> -->
     <script type="text/javascript">
 
-      var socket = io();
+      // Globals
       var input = document.querySelector('.clientinput');
       var output = document.querySelector('.serveroutput');
       var submit = document.querySelector('.submit');
 
-      socket.emit('')
+      // var endpointId = {{endpointId}};
+      // var roomId     = {{roomId}};
 
+      // var myComms = new Comms(endpointId, roomId);
+      // myComms.registerHandler('CHAT', 'REGISTER', registerMySelf)
+      //
+      //
+      // function registerMySelf(handler, from, message) {
+      //
+      //
+      // }
+
+      var socket = io();
       socket.on('global message', function (msg){
         var elt = document.createElement('p');
             elt.innerHTML = msg;
          output.appendChild(elt)
       })
-
 
       submit.addEventListener('click', function(){
         socket.emit('private message', input.value);
