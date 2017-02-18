@@ -38,4 +38,14 @@ Room.prototype.getRoomName = function (endpointId) {
   return this.roomname;
 };
 
+// Get Endpoint Name from ID
+Room.prototype.getEndpointNameFromCommsID = function (commsid) {
+  var self = this;
+  for (let props in self.endpoints) {
+    if (self.endpoints[props].commsid === commsid) {
+      return props;
+    }
+  }
+};
+
 module.exports = Room;

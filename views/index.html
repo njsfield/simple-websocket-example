@@ -23,8 +23,7 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="js/elt.js" type="text/javascript"></script>
     <script src="js/clientcomms.js" type="text/javascript"></script>
-    <script src="js/clientregister.js" type="text/javascript"></script>
-    <script src="js/chatmessage.js" type="text/javascript"></script>
+    <script src="js/chatroom.js" type="text/javascript"></script>
     <script type="text/javascript">
 
       // Globals
@@ -34,12 +33,12 @@
 
       // Set up comms
       const myComms = new Comms('{{roomname}}', '{{endpointid}}');
-        // Register socket with server
-        clientRegister(myComms, output, ()=> {
-          // Enable chat message module
-          chatMessage(myComms, input, output, submit)
-        })
 
+      // Enable chat message module
+      chatRoom(myComms, input, output, submit)
+
+    // Debug.
+    localStorage.debug = '*';
     </script>
   </body>
 </html>
