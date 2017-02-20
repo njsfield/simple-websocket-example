@@ -1,20 +1,8 @@
 // Import Room
 const myRoom = require('../myroom.js');
-
-// Servers responsibility to notify parties if socket disconnects
-const disconnectmsg = (id) => {
-  const from = myRoom.getEndpointNameFromCommsID(id);
-  return JSON.stringify({
-    from: from,
-    app: 'CHATROOM',
-    method: 'DISCONNECT',
-    params: 'LEFT THE CHATROOM'
-  });
-};
-
 // Comms
 module.exports = (io, ws, msg) => {
-  if (!msg) msg = disconnectmsg(ws.id);
+  if (!msg) msg = myRoom.disconnectMsg(ws.id);
   // Parse message
   const parsed = JSON.parse(msg);
 
@@ -26,6 +14,7 @@ module.exports = (io, ws, msg) => {
 
   switch (route) {
     case ('CHATROOM.REGISTER') : {
+      myRoom.addEndpoint(from);
       myRoom.updateEndpointCommsID(from, ws.id);
       io.emit('message', msg);
       break;

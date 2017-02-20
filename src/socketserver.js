@@ -6,7 +6,7 @@ module.exports = (io) => {
       comms(io, ws, msg);
     });
     ws.on('disconnect', () => {
-      comms(io, ws);
+      comms(io, ws, null);
     });
   });
 };
