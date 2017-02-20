@@ -1,5 +1,7 @@
-const server = require('./src/server.js');
-const comms = require('./src/comms');
+const server = require('./src/server');
+const socketserver = require('./src/socketserver');
+const io = require('socket.io');
+const comms = require('./src/servercomms');
 const port = 4000;
 const log = (msg) => process.stdout.write(`${msg}\n`);
 
@@ -9,12 +11,5 @@ const liveserver = server.listen(port, () => {
 });
 
 // Start Websocket server from liveserver
-const io = require('socket.io')(liveserver);
-io.on('connection', (ws) => {
-  ws.on('message', (msg) => {
-    comms(io, ws, msg);
-  });
-  ws.on('disconnect', () => {
-    comms(io, ws);
-  });
-});
+
+const livesocketserver = socketserver(io(liveserver));
