@@ -1,6 +1,3 @@
-// Global endpoints
-Comms.endpoints = {};
-
 // Main comms class
 class Comms {
 
@@ -42,3 +39,6 @@ class Comms {
 
 // Get endpoint Id (useful when client has multiple endpoints)
 Comms.getEndPointID = (endpointId) => Comms.endpoints[endpointId];
+
+// Global endpoints
+Comms.endpoints = {};
