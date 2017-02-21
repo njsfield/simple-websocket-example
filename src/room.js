@@ -1,51 +1,47 @@
 // Global room class
-function Room (roomname) {
-  this.roomname = roomname;
-  this.endpoints = {};
-}
+class Room {
 
-// Add Endpoint
-Room.prototype.addEndpoint = function (endpointId) {
-  this.endpoints[endpointId] = {
-    name: '',
-    permissions: 'chat',
-    commsid: ''
-  };
-};
+  constructor (roomname) {
+    this.roomname = roomname;
+    this.endpoints = {};
+  }
 
-// Update Endpoint Name
-Room.prototype.updateEndpointName = function (endpointId, name) {
-  this.endpoints[endpointId].name = name;
-};
+  addEndpoint (endpointId) {
+    this.endpoints[endpointId] = {
+      name: '',
+      permissions: 'chat',
+      commsid: ''
+    };
+  }
 
-// Update Endpoint Permissions
-Room.prototype.updateEndpointPermissions = function (endpointId, permissions) {
-  this.endpoints[endpointId].permissions = permissions;
-};
+  updateEndpointName (endpointId, name) {
+    this.endpoints[endpointId].name = name;
+  }
 
-// Update Endpoint comms ID
-Room.prototype.updateEndpointCommsID = function (endpointId, commsid) {
-  this.endpoints[endpointId].commsid = commsid;
-};
+  updateEndpointPermissions (endpointId, permissions) {
+    this.endpoints[endpointId].permissions = permissions;
+  }
 
-// Remove Endpoint
-Room.prototype.removeEndpoint = function (endpointId) {
-  delete this.endpoints[endpointId];
-};
+  updateEndpointCommsID (endpointId, commsid) {
+    this.endpoints[endpointId].commsid = commsid;
+  }
+  removeEndpoint (endpointId) {
+    delete this.endpoints[endpointId];
+  }
 
-// Get Roomname
-Room.prototype.getRoomName = function (endpointId) {
-  return this.roomname;
-};
+  getRoomName (endpointId) {
+    return this.roomname;
+  }
 
-// Get Endpoint Name from ID
-Room.prototype.getEndpointNameFromCommsID = function (commsid) {
-  var self = this;
-  for (let props in self.endpoints) {
-    if (self.endpoints[props].commsid === commsid) {
-      return props;
+  getEndpointNameFromCommsID (commsid) {
+    var self = this;
+    for (let props in self.endpoints) {
+      if (self.endpoints[props].commsid === commsid) {
+        return props;
+      }
     }
   }
-};
+
+}
 
 module.exports = Room;
