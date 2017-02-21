@@ -4,7 +4,7 @@ const appendP = (output, comms, from, message) => {
 };
 
 // Simply sends message to register
-const chatRoom = (comms, input, output, form) => {
+const chatroomhandlers = (comms, input, output, form) => {
   const app = 'CHATROOM';
   const sys = 'SYSTEM';
 
