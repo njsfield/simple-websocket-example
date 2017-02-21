@@ -4,7 +4,7 @@ const appendP = (output, comms, from, message) => {
 };
 
 // Simply sends message to register
-const chatRoom = (comms, input, output, submit) => {
+const chatRoom = (comms, input, output, form) => {
   const app = 'CHATROOM';
   const sys = 'SYSTEM';
 
@@ -16,7 +16,8 @@ const chatRoom = (comms, input, output, submit) => {
   // Receive Disconnect
   comms.registerHandler(app, 'DISCONNECT', appendP.bind(null, output));
   // Send (click submit)
-  submit.addEventListener('click', () => {
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
     if (input.value) {
       comms.send(app, 'MESSAGE', sys, input.value);
       input.value = '';
@@ -24,7 +25,7 @@ const chatRoom = (comms, input, output, submit) => {
   });
   // Send (enter)
   input.addEventListener('keydown', function (e) {
-    if (e.which == 13 && input.value) {
+    if (e.which === 13 && input.value) {
       comms.send(app, 'MESSAGE', sys, input.value);
       input.value = '';
     }

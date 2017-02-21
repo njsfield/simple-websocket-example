@@ -15,8 +15,10 @@
     <div class="serveroutput"></div>
 
     <br />
-    <input class="clientinput" placeholder="please type some stuff to send via websocket... "/>
-    <button class="submit">Submit</button>
+    <form class="form">
+      <input class="clientinput" name="Client input" placeholder="please type some stuff to send via websocket... "/>
+      <button type="submit" name="Submit Button" class="submit">Submit</button>
+    </form>
 
 
     <!-- socket.io innit -->
@@ -29,13 +31,13 @@
       // Globals
       const input = document.querySelector('.clientinput');
       const output = document.querySelector('.serveroutput');
-      const submit = document.querySelector('.submit');
+      const form = document.querySelector('.form');
 
       // Set up comms
       const myComms = new Comms('{{roomname}}', '{{endpointid}}');
 
       // Enable chat message module
-      chatRoom(myComms, input, output, submit)
+      chatRoom(myComms, input, output, form)
 
     // Debug.
     localStorage.debug = '*';
