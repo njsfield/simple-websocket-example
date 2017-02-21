@@ -1,8 +1,8 @@
 // Import Room
 const myRoom = require('../myroom.js');
+
 // Comms
-module.exports = (io, ws, msg) => {
-  if (!msg) msg = myRoom.disconnectMsg(ws.id);
+const servercomms = (io, ws, msg) => {
   // Parse message
   const parsed = JSON.parse(msg);
 
@@ -28,4 +28,17 @@ module.exports = (io, ws, msg) => {
       break;
     }
   }
+};
+
+// Main router
+module.exports = (io) => {
+  io.on('connection', (ws) => {
+    ws.on('message', (msg) => {
+      servercomms(io, ws, msg);
+    });
+    ws.on('disconnect', () => {
+      servercomms(io, ws, myRoom.disconnectMsg(ws.id));
+      myRoom.removeEndpoint(ws.id);
+    });
+  });
 };

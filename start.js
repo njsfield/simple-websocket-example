@@ -1,7 +1,6 @@
 const server = require('./src/server');
 const socketserver = require('./src/socketserver');
 const io = require('socket.io');
-const comms = require('./src/servercomms');
 const port = 4000;
 const log = (msg) => process.stdout.write(`${msg}\n`);
 

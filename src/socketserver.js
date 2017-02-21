@@ -1,12 +1,5 @@
-const comms = require('./servercomms');
+const comms = require('./socketrouter');
 
 module.exports = (io) => {
-  io.on('connection', (ws) => {
-    ws.on('message', (msg) => {
-      comms(io, ws, msg);
-    });
-    ws.on('disconnect', () => {
-      comms(io, ws, null);
-    });
-  });
+  comms(io);
 };
